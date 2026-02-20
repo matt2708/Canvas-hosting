@@ -17,13 +17,10 @@
     <script type="text/babel">
         const { useState } = React;
         const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } = Recharts;
-        
-        // Destructure Lucide icons from the global window object
         const { 
-            CheckCircle2, Clock, Euro, Zap, ShieldCheck, Cpu, Server, 
-            ChevronRight, TrendingUp, LayoutDashboard, RefreshCw, 
-            History, AlertTriangle, Users, Globe, Wallet, Network, 
-            GitBranch, Award, MapPin 
+            CheckCircle2, Euro, Globe, Wallet, TrendingUp, 
+            LayoutDashboard, RefreshCw, History, AlertTriangle, 
+            Users, Network, GitBranch, Award, MapPin, ChevronRight 
         } = lucide;
 
         const App = () => {
@@ -42,115 +39,80 @@
                             <h3 className="text-xl font-bold">ConStraight (P3 Group)</h3>
                         </div>
                         <p className="text-slate-300 mb-2 font-medium">The "Structural Rework" Approach</p>
-                        <p className="text-sm text-slate-400 mb-6 leading-relaxed">
-                            Assumes existing Terraform needs 18 weeks of alignment/redesign. Leverages P3 Group's automotive-grade engineering to build a foundation optimized for Agentic AI (Gemini).
-                        </p>
-                        <div className="space-y-3">
-                            {['18-week Terraform Redesign & Alignment', 'Bespoke Agentic AI Development (Gemini)', 'Industrial Engineering Scale (P3 Backing)', 'Goal: Long-term AI-driven Autonomy'].map((item, i) => (
-                                <div key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                                    <CheckCircle2 size={16} className="text-blue-500 mt-1 shrink-0" />
+                        <p className="text-sm text-slate-400 mb-6 leading-relaxed">Assumes existing Terraform needs 18 weeks of alignment. Leverages P3 Group's engineering for Agentic AI (Gemini).</p>
+                        <ul className="space-y-3">
+                            {['18-week Terraform Redesign', 'Bespoke Agentic AI Development', 'Industrial Engineering Scale', 'Goal: AI-driven Autonomy'].map((item, i) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                                    <CheckCircle2 size={16} className="text-blue-500 mt-1" />
                                     <span>{item}</span>
-                                </div>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
                     </div>
-
                     <div className="bg-slate-800 p-6 rounded-xl border border-pink-500/30">
                         <div className="flex items-center gap-3 mb-4 text-pink-400">
                             <History size={24} />
                             <h3 className="text-xl font-bold">Devoteam (GCP Diamond)</h3>
                         </div>
                         <p className="text-slate-300 mb-2 font-medium">The "Operational Excellence" Approach</p>
-                        <p className="text-sm text-slate-400 mb-6 leading-relaxed">
-                            Focuses on rapid takeover (1 month) of existing infrastructure. Uses specialized Google Cloud expertise to manage your current Terraform setup "as-is" with 24/7 resilience.
-                        </p>
-                        <div className="space-y-3">
-                            {['4-week "Shadowing & Learn" Onboarding', 'Diamond-tier Google Partner Support', '650+ Dedicated Google Experts', 'Goal: High Availability & Immediate Stability'].map((item, i) => (
-                                <div key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                                    <CheckCircle2 size={16} className="text-pink-500 mt-1 shrink-0" />
+                        <p className="text-sm text-slate-400 mb-6 leading-relaxed">Focuses on rapid takeover (1 month) of existing infrastructure. Uses GCP expertise to manage current setup "as-is".</p>
+                        <ul className="space-y-3">
+                            {['4-week "Shadowing" Onboarding', 'Diamond-tier Google Support', '650+ Dedicated Experts', 'Goal: Immediate Stability'].map((item, i) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                                    <CheckCircle2 size={16} className="text-pink-500 mt-1" />
                                     <span>{item}</span>
-                                </div>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
                     </div>
                 </div>
             );
 
-            const renderExpertise = () => (
-                <div className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-slate-800 p-6 rounded-xl border border-blue-500/30">
-                            <div className="flex items-center gap-2 mb-6"><Globe className="text-blue-400" /><h3 className="text-xl font-bold">ConStraight + P3 Group</h3></div>
-                            <div className="space-y-6">
-                                <div className="space-y-3">
-                                    <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2"><Award size={14} className="text-blue-400"/> Multi-Cloud Tiering</h4>
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">Google Cloud</span><span className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-xs font-bold border border-blue-500/30">Premier Partner</span></div>
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">Microsoft Azure</span><span className="px-2 py-0.5 rounded bg-slate-700 text-slate-400 text-xs font-bold">Solution Partner</span></div>
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">AWS</span><span className="px-2 py-0.5 rounded bg-slate-700 text-slate-400 text-xs font-bold">Select Partner</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="bg-slate-800 p-6 rounded-xl border border-pink-500/30">
-                            <div className="flex items-center gap-2 mb-6"><Users className="text-pink-400" /><h3 className="text-xl font-bold">Devoteam Cloud BU</h3></div>
-                            <div className="space-y-6">
-                                <div className="space-y-3">
-                                    <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2"><Award size={14} className="text-pink-400"/> Multi-Cloud Tiering</h4>
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">Google Cloud</span><span className="px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 text-xs font-bold border border-pink-500/30">Diamond Partner</span></div>
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">Microsoft Azure</span><span className="px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 text-xs font-bold border border-pink-500/30">Expert MSP</span></div>
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">AWS</span><span className="px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 text-xs font-bold border border-pink-500/30">Premier Partner</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-
-            const renderGaps = () => (
+            const renderFinancials = () => (
                 <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <div className="flex items-center gap-2 mb-6"><AlertTriangle className="text-amber-400" /><h3 className="text-xl font-bold">Scope & Responsibility Gaps</h3></div>
-                    <div className="space-y-4">
-                        {[
-                            { area: "GCP Networking", icon: <Network size={18} />, constraight: "GAP: Nagel IT Cyber Defense remains responsible.", devoteam: "INCLUDED: Full network support & VPC operations.", danger: "High Internal Burden" },
-                            { area: "GitHub & CI/CD", icon: <GitBranch size={18} />, constraight: "INCLUDED: Full maintenance of Actions and IaC.", devoteam: "GAP: Troubleshooting is T&M.", danger: "Future Cost Risk" }
-                        ].map((gap, i) => (
-                            <div key={i} className="bg-slate-900/50 border border-slate-700 p-4 rounded-lg">
-                                <div className="flex justify-between items-center mb-3">
-                                    <div className="flex items-center gap-2">{gap.icon}<h4 className="font-bold text-slate-200">{gap.area}</h4></div>
-                                    <span className="text-[10px] px-2 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20 font-bold">{gap.danger}</span>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                                    <div className="p-3 rounded bg-blue-500/5 border border-blue-500/20"><span className="text-blue-400 font-bold block mb-1">ConStraight</span><span className="text-slate-400">{gap.constraight}</span></div>
-                                    <div className="p-3 rounded bg-pink-500/5 border border-pink-500/20"><span className="text-pink-400 font-bold block mb-1">Devoteam</span><span className="text-slate-400">{gap.devoteam}</span></div>
-                                </div>
-                            </div>
-                        ))}
+                    <div className="flex items-center gap-2 mb-6 text-blue-400 font-bold">
+                        <Euro size={24}/>
+                        <h3 className="text-xl">Financial Comparison</h3>
+                    </div>
+                    <div style={{ width: '100%', height: 300 }}>
+                        <ResponsiveContainer>
+                            <BarChart data={costChartData}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                                <XAxis dataKey="name" stroke="#94a3b8" />
+                                <YAxis stroke="#94a3b8" />
+                                <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none' }} />
+                                <Legend />
+                                <Bar dataKey="ConStraight" fill="#3b82f6" name="ConStraight" />
+                                <Bar dataKey="Devoteam" fill="#ec4899" name="Devoteam" />
+                            </BarChart>
+                        </ResponsiveContainer>
                     </div>
                 </div>
             );
 
             return (
-                <div className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
+                <div className="min-h-screen bg-slate-900 text-white p-8">
                     <header className="max-w-6xl mx-auto mb-10 text-center">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-4">
-                            <LayoutDashboard size={14} /> Internal Support Model Comparison (v6)
-                        </div>
-                        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-blue-400 via-white to-pink-400 bg-clip-text text-transparent">GCP Support Model Comparison</h1>
+                        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
+                            GCP Support Model Comparison
+                        </h1>
+                        <p className="text-slate-400">Nagel-Group Cloud Strategy 2026</p>
                     </header>
+
+                    <nav className="flex justify-center gap-4 mb-8">
+                        {['strategy', 'financials'].map(tab => (
+                            <button 
+                                key={tab} 
+                                onClick={() => setActiveTab(tab)}
+                                className={`px-6 py-2 rounded-full capitalize ${activeTab === tab ? 'bg-blue-600' : 'bg-slate-800'}`}
+                            >
+                                {tab}
+                            </button>
+                        ))}
+                    </nav>
+
                     <main className="max-w-6xl mx-auto">
-                        <nav className="flex flex-wrap gap-2 mb-8 justify-center">
-                            {[{ id: 'strategy', label: 'Rework vs. Manage', icon: <TrendingUp size={16}/> }, { id: 'gaps', label: 'Scope Gaps', icon: <AlertTriangle size={16}/> }, { id: 'expertise', label: 'Coverage & Certs', icon: <Globe size={16}/> }].map(tab => (
-                                <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${activeTab === tab.id ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}>{tab.label}</button>
-                            ))}
-                        </nav>
-                        <section className="mb-10">
-                            {activeTab === 'strategy' && renderStrategy()}
-                            {activeTab === 'gaps' && renderGaps()}
-                            {activeTab === 'expertise' && renderExpertise()}
-                        </section>
+                        {activeTab === 'strategy' ? renderStrategy() : renderFinancials()}
                     </main>
                 </div>
             );
