@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GCP Support Model Comparison</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/recharts/umd/Recharts.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js"></script>
 </head>
 <body class="bg-slate-900">
     <div id="root"></div>
 
     <script type="text/babel">
         const { useState } = React;
-        const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } = Recharts;
+        const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } = window.Recharts;
+        
+        // FIX: Pulling from LucideReact instead of vanilla lucide
         const { 
             CheckCircle2, Clock, Euro, Zap, ShieldCheck, Cpu, Server, 
             ChevronRight, TrendingUp, LayoutDashboard, RefreshCw, 
             History, AlertTriangle, Users, Globe, Wallet, Network, 
             GitBranch, Award, MapPin 
-        } = lucide;
+        } = window.LucideReact;
 
         const App = () => {
             const [activeTab, setActiveTab] = useState('strategy');
