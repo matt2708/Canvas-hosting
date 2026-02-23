@@ -3,255 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GCP Support Model Comparison</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Database Deployment Modernization Strategy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/recharts/umd/Recharts.js"></script>
-    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+        .cost-gradient {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+        }
+        .phase-gradient-1 {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+        .phase-gradient-2 {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+    </style>
 </head>
-<body class="bg-slate-900">
-    <div id="root"></div>
+<body class="p-4 md:p-8 flex justify-center">
 
-    <script type="text/babel">
-        const { useState } = React;
-        const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } = window.Recharts;
+    <div class="max-w-5xl w-full bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-200">
         
-        // FIX: Pulling from LucideReact instead of vanilla lucide
-        const { 
-            CheckCircle2, Clock, Euro, Zap, ShieldCheck, Cpu, Server, 
-            ChevronRight, TrendingUp, LayoutDashboard, RefreshCw, 
-            History, AlertTriangle, Users, Globe, Wallet, Network, 
-            GitBranch, Award, MapPin 
-        } = window.LucideReact;
+        <!-- Header -->
+        <header class="gradient-bg text-white p-8 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                <i data-lucide="database" class="w-64 h-64 absolute -top-12 -left-12 transform -rotate-12"></i>
+                <i data-lucide="git-merge" class="w-64 h-64 absolute -bottom-12 -right-12 transform rotate-12"></i>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-3 relative z-10">TMS Database Deployment Strategy</h1>
+            <p class="text-lg md:text-xl text-blue-100 font-light max-w-2xl mx-auto relative z-10">Standardizing Postgres & Oracle deployments to eliminate manual risk, reduce costs, and remove legacy dependencies.</p>
+        </header>
 
-        const App = () => {
-            const [activeTab, setActiveTab] = useState('strategy');
-
-            const costChartData = [
-                { name: 'Onboarding / Setup', ConStraight: 340800, Devoteam: 25000 },
-                { name: 'Annual Run (Ops)', ConStraight: 259000, Devoteam: 246000 }
-            ];
-
-            const renderStrategy = () => (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-slate-800 p-6 rounded-xl border border-blue-500/30">
-                        <div className="flex items-center gap-3 mb-4 text-blue-400">
-                            <RefreshCw size={24} />
-                            <h3 className="text-xl font-bold">ConStraight (P3 Group)</h3>
+        <div class="p-8 space-y-8">
+            
+            <!-- Section 1: Current State vs Financial Impact -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- The Challenge -->
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="bg-orange-100 p-3 rounded-lg text-orange-600">
+                            <i data-lucide="alert-triangle" class="w-6 h-6"></i>
                         </div>
-                        <p className="text-slate-300 mb-2 font-medium">The "Structural Rework" Approach</p>
-                        <p className="text-sm text-slate-400 mb-6 leading-relaxed">
-                            Assumes existing Terraform needs 18 weeks of alignment/redesign. Leverages P3 Group's automotive-grade engineering to build a foundation optimized for Agentic AI (Gemini).
-                        </p>
-                        <div className="space-y-3">
-                            {['18-week Terraform Redesign & Alignment', 'Bespoke Agentic AI Development (Gemini)', 'Industrial Engineering Scale (P3 Backing)', 'Goal: Long-term AI-driven Autonomy'].map((item, i) => (
-                                <div key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                                    <CheckCircle2 size={16} className="text-blue-500 mt-1 shrink-0" />
-                                    <span>{item}</span>
-                                </div>
-                            ))}
-                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800">The Current Challenge</h2>
                     </div>
-                    <div className="bg-slate-800 p-6 rounded-xl border border-pink-500/30">
-                        <div className="flex items-center gap-3 mb-4 text-pink-400">
-                            <History size={24} />
-                            <h3 className="text-xl font-bold">Devoteam (GCP Diamond)</h3>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-lucide="x-circle" class="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <strong class="text-gray-900 block">Manual Postgres Rollouts</strong>
+                                <span class="text-sm text-gray-600">Deep dependency trees requiring manual oversight. High risk of failure scaling to 65 targets.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="x-circle" class="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <strong class="text-gray-900 block">Legacy Oracle Tooling (QSApp)</strong>
+                                <span class="text-sm text-gray-600">Internal tool creates a severe key-person dependency (Thomas P.) and fragments our CI/CD approach.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="x-circle" class="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <strong class="text-gray-900 block">GitHub Disconnect</strong>
+                                <span class="text-sm text-gray-600">Lack of deterministic, automated database promotion via our core GitHub pipelines.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Financial Impact -->
+                <div class="cost-gradient text-white p-6 rounded-xl shadow-lg relative overflow-hidden flex flex-col justify-center">
+                    <div class="absolute top-0 right-0 opacity-10">
+                        <i data-lucide="trending-down" class="w-48 h-48 -mr-10 -mt-10"></i>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-2 text-red-100 relative z-10">Annual Cost of the Status Quo</h2>
+                    <div class="text-5xl font-black mb-6 relative z-10">€130,400 <span class="text-lg font-normal text-red-200">/ year</span></div>
+                    
+                    <div class="space-y-3 relative z-10 text-sm">
+                        <div class="flex justify-between items-center border-b border-red-400/30 pb-2">
+                            <span>Deployment Issues & Rework (20hrs/incident)</span>
+                            <span class="font-bold">€48,000</span>
                         </div>
-                        <p className="text-slate-300 mb-2 font-medium">The "Operational Excellence" Approach</p>
-                        <p className="text-sm text-slate-400 mb-6 leading-relaxed">
-                            Focuses on rapid takeover (1 month) of existing infrastructure. Uses specialized Google Cloud expertise to manage your current Terraform setup "as-is" with 24/7 resilience.
-                        </p>
-                        <div className="space-y-3">
-                            {['4-week "Shadowing & Learn" Onboarding', 'Diamond-tier Google Partner Support', '650+ Dedicated Google Experts', 'Goal: High Availability & Immediate Stability'].map((item, i) => (
-                                <div key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                                    <CheckCircle2 size={16} className="text-pink-500 mt-1 shrink-0" />
-                                    <span>{item}</span>
-                                </div>
-                            ))}
+                        <div class="flex justify-between items-center border-b border-red-400/30 pb-2">
+                            <span>Manual Validation & Plumbing (12hrs/wk)</span>
+                            <span class="font-bold">€62,400</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>High-Severity Event Avoidance (Min. 1/yr)</span>
+                            <span class="font-bold">€20,000+</span>
                         </div>
                     </div>
                 </div>
-            );
+            </div>
 
-            const renderExpertise = () => (
-                <div className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-slate-800 p-6 rounded-xl border border-blue-500/30">
-                            <div className="flex items-center gap-2 mb-6"><Globe className="text-blue-400" /><h3 className="text-xl font-bold">ConStraight + P3 Group</h3></div>
-                            <div className="space-y-6">
-                                <div className="space-y-3">
-                                    <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2"><Award size={14} className="text-blue-400"/> Multi-Cloud Tiering</h4>
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">Google Cloud</span><span className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-xs font-bold border border-blue-500/30">Premier Partner</span></div>
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">Microsoft Azure</span><span className="px-2 py-0.5 rounded bg-slate-700 text-slate-400 text-xs font-bold">Solution Partner</span></div>
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">AWS</span><span className="px-2 py-0.5 rounded bg-slate-700 text-slate-400 text-xs font-bold">Select Partner</span></div>
-                                    </div>
-                                </div>
-                                <div className="p-4 bg-blue-500/5 rounded-lg border border-blue-500/10">
-                                    <p className="text-[11px] text-slate-400 italic">P3 Group brings industrial-grade compliance (TISAX, ISO 27001) and global engineering capacity. Strongest in custom AI automation.</p>
-                                </div>
+            <!-- Section 2: The Phased Strategy -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">The Solution: Phased Adoption of Liquibase</h2>
+                
+                <div class="relative">
+                    <!-- Connector Line -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0"></div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                        <!-- Phase 1 -->
+                        <div class="bg-white border-2 border-emerald-500 rounded-xl p-6 shadow-md transform transition hover:-translate-y-1">
+                            <div class="phase-gradient-1 text-white text-xs font-bold uppercase tracking-wider py-1 px-3 inline-block rounded-full mb-4">Phase 1: Proof of Value</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center">
+                                <i data-lucide="database" class="w-5 h-5 mr-2 text-emerald-600"></i> PostgreSQL First
+                            </h3>
+                            <ul class="space-y-2 text-sm text-gray-600 mb-4 list-disc list-inside">
+                                <li>Focus exclusively on Postgres Test & Prod environments.</li>
+                                <li>Establish weekly automated GitHub deployments.</li>
+                                <li>Dedicate 1 engineer to build CI/CD pipeline integration.</li>
+                                <li>Prove operational ROI and build internal expertise.</li>
+                            </ul>
+                            <div class="bg-emerald-50 p-3 rounded text-emerald-800 font-semibold text-sm flex items-center">
+                                <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i> Low Risk, Immediate Impact
                             </div>
                         </div>
-                        <div className="bg-slate-800 p-6 rounded-xl border border-pink-500/30">
-                            <div className="flex items-center gap-2 mb-6"><Users className="text-pink-400" /><h3 className="text-xl font-bold">Devoteam Cloud BU</h3></div>
-                            <div className="space-y-6">
-                                <div className="space-y-3">
-                                    <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2"><Award size={14} className="text-pink-400"/> Multi-Cloud Tiering</h4>
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">Google Cloud</span><span className="px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 text-xs font-bold border border-pink-500/30">Diamond Partner</span></div>
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">Microsoft Azure</span><span className="px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 text-xs font-bold border border-pink-500/30">Expert MSP</span></div>
-                                        <div className="flex justify-between items-center text-sm p-2 rounded bg-slate-900/50"><span className="text-slate-300">AWS</span><span className="px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 text-xs font-bold border border-pink-500/30">Premier Partner</span></div>
-                                    </div>
-                                </div>
-                                <div className="p-4 bg-pink-500/5 rounded-lg border border-pink-500/10">
-                                    <p className="text-[11px] text-slate-400 italic">Devoteam holds the highest possible status across all three major clouds and specialized Google Cloud MSP status.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                        <div className="flex items-center gap-2 mb-6"><MapPin className="text-orange-400" /><h3 className="text-xl font-bold">European Support & Footprint</h3></div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div className="space-y-4">
-                                <h4 className="text-blue-400 font-bold text-sm uppercase">ConStraight (P3) Regional Bases</h4>
-                                <div className="grid grid-cols-1 gap-2">
-                                    {[
-                                        { location: "Germany (Stuttgart/Munich)", role: "HQ Core" },
-                                        { location: "Bulgaria (Sofia)", role: "Automation Hub" },
-                                        { location: "France (Paris)", role: "Regional Support" }
-                                    ].map((loc, i) => (
-                                        <div key={i} className="flex justify-between items-center text-xs p-2 rounded bg-slate-900 border border-slate-700/50">
-                                            <span className="text-slate-200">{loc.location}</span><span className="text-slate-500">{loc.role}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="space-y-4">
-                                <h4 className="text-pink-400 font-bold text-sm uppercase">Devoteam Regional Bases</h4>
-                                <div className="grid grid-cols-1 gap-2">
-                                    {[
-                                        { location: "Lithuania (Vilnius)", role: "24/7 Managed Hub" },
-                                        { location: "Poland (Warsaw)", role: "Operations Center" },
-                                        { location: "Germany (Frankfurt)", role: "Account Team" }
-                                    ].map((loc, i) => (
-                                        <div key={i} className="flex justify-between items-center text-xs p-2 rounded bg-slate-900 border border-slate-700/50">
-                                            <span className="text-slate-200">{loc.location}</span><span className="text-slate-500">{loc.role}</span>
-                                        </div>
-                                    ))}
-                                </div>
+                        <!-- Phase 2 -->
+                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 shadow-md transform transition hover:-translate-y-1 opacity-90">
+                            <div class="phase-gradient-2 text-white text-xs font-bold uppercase tracking-wider py-1 px-3 inline-block rounded-full mb-4">Phase 2: Expansion</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center">
+                                <i data-lucide="layers" class="w-5 h-5 mr-2 text-blue-600"></i> Oracle Unification (TMS)
+                            </h3>
+                            <ul class="space-y-2 text-sm text-gray-600 mb-4 list-disc list-inside">
+                                <li>Expand proven Liquibase workflow to Oracle.</li>
+                                <li><strong>Deprecate legacy QSApp.</strong></li>
+                                <li>Eliminate key-person dependency.</li>
+                                <li>Negotiate multi-year vendor contract from a position of strength and proven value.</li>
+                            </ul>
+                            <div class="bg-blue-50 p-3 rounded text-blue-800 font-semibold text-sm flex items-center">
+                                <i data-lucide="target" class="w-4 h-4 mr-2"></i> Unified TMS Pipeline
                             </div>
                         </div>
                     </div>
                 </div>
-            );
+            </div>
 
-            const renderCostManagement = () => (
-                <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <div className="flex items-center gap-2 mb-6 text-green-400"><Wallet size={24} /><h3 className="text-xl font-bold">Cost Management & FinOps</h3></div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
-                        <div className="space-y-3">
-                            <h4 className="text-blue-400 font-bold border-b border-slate-700 pb-2">ConStraight Approach</h4>
-                            {[{ title: "Creep Detection", text: "AI monitoring of cost drift." }, { title: "Spike Monitoring", text: "Anomalies alerts." }].map((item, i) => (
-                                <div key={i} className="p-3 bg-slate-900 rounded-lg"><span className="text-slate-200 font-bold block">{item.title}</span><span className="text-slate-400 text-xs">{item.text}</span></div>
-                            ))}
-                        </div>
-                        <div className="space-y-3">
-                            <h4 className="text-pink-400 font-bold border-b border-slate-700 pb-2">Devoteam Approach</h4>
-                            {[{ title: "Cloud Economics", text: "Deep-dive FinOps." }, { title: "BigQuery Billing", text: "Spend transparency." }].map((item, i) => (
-                                <div key={i} className="p-3 bg-slate-900 rounded-lg"><span className="text-slate-200 font-bold block">{item.title}</span><span className="text-slate-400 text-xs">{item.text}</span></div>
-                            ))}
-                        </div>
+            <!-- Section 3: Commercial Recommendation -->
+            <div class="bg-slate-900 text-white rounded-xl p-8 shadow-xl mt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6 border-b border-slate-700 pb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white flex items-center">
+                            <i data-lucide="briefcase" class="w-6 h-6 mr-3 text-blue-400"></i> Leadership Decision
+                        </h2>
+                        <p class="text-slate-400 text-sm mt-1">Vendor proposes a 2-year commit ($42k). We recommend a progressive start.</p>
                     </div>
                 </div>
-            );
 
-            const renderGaps = () => (
-                <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <div className="flex items-center gap-2 mb-6"><AlertTriangle className="text-amber-400" /><h3 className="text-xl font-bold">Scope & Responsibility Gaps</h3></div>
-                    <div className="space-y-4">
-                        {[
-                            { area: "GCP Networking", icon: <Network size={18} />, constraight: "GAP: Support only.", devoteam: "INCLUDED: Full support.", danger: "High Internal Burden" },
-                            { area: "GitHub & CI/CD", icon: <GitBranch size={18} />, constraight: "INCLUDED: Full maintenance.", devoteam: "GAP: T&M basis.", danger: "Future Cost Risk" }
-                        ].map((gap, i) => (
-                            <div key={i} className="bg-slate-900/50 border border-slate-700 p-4 rounded-lg">
-                                <div className="flex justify-between items-center mb-3">
-                                    <div className="flex items-center gap-2">{gap.icon}<h4 className="font-bold text-slate-200">{gap.area}</h4></div>
-                                    <span className="text-[10px] px-2 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20 font-bold">{gap.danger}</span>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                                    <div className="p-3 rounded bg-blue-500/5 border border-blue-500/20"><span className="text-blue-400 font-bold block mb-1">ConStraight</span><span className="text-slate-400">{gap.constraight}</span></div>
-                                    <div className="p-3 rounded bg-pink-500/5 border border-pink-500/20"><span className="text-pink-400 font-bold block mb-1">Devoteam</span><span className="text-slate-400">{gap.devoteam}</span></div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            );
-
-            const renderFinancials = () => (
-                <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <div className="flex items-center gap-2 mb-6 text-blue-400 font-bold"><Euro size={24}/><h3 className="text-xl">Financial Comparison</h3></div>
-                    <div style={{ width: '100%', height: 300 }}>
-                        <ResponsiveContainer>
-                            <BarChart data={costChartData}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                                <XAxis dataKey="name" stroke="#94a3b8" />
-                                <YAxis stroke="#94a3b8" />
-                                <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none' }} />
-                                <Legend />
-                                <Bar dataKey="ConStraight" fill="#3b82f6" name="ConStraight (P3 Group)" />
-                                <Bar dataKey="Devoteam" fill="#ec4899" name="Devoteam" />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mt-6">
-                        <div className="p-4 bg-slate-900 rounded-lg border-l-4 border-blue-500"><p className="text-blue-400 font-bold">Total Year 1: €599,800</p></div>
-                        <div className="p-4 bg-slate-900 rounded-lg border-l-4 border-pink-500"><p className="text-pink-400 font-bold">Total Year 1: €271,000</p></div>
-                    </div>
-                </div>
-            );
-
-            return (
-                <div className="min-h-screen bg-slate-900 text-white p-4 md:p-8 font-sans">
-                    <header className="max-w-6xl mx-auto mb-10 text-center">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs mb-4">
-                            <LayoutDashboard size={14} /> Internal Support Model Comparison (v6)
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Vendor Ask -->
+                    <div class="border border-slate-700 bg-slate-800/50 p-5 rounded-lg opacity-75">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-semibold text-slate-300">Vendor Recommendation</h4>
+                            <span class="text-xs border border-slate-600 px-2 py-1 rounded text-slate-400">Option 2</span>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-white to-pink-400 bg-clip-text text-transparent">GCP Support Comparison</h1>
-                    </header>
-                    <main className="max-w-6xl mx-auto">
-                        <nav className="flex flex-wrap justify-center gap-2 mb-8">
-                            {[
-                                { id: 'strategy', label: 'Rework vs Manage' },
-                                { id: 'gaps', label: 'Scope Gaps' },
-                                { id: 'expertise', label: 'Coverage' },
-                                { id: 'cost', label: 'FinOps' },
-                                { id: 'financials', label: 'Financials' }
-                            ].map(tab => (
-                                <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${activeTab === tab.id ? 'bg-blue-600' : 'bg-slate-800 text-slate-400'}`}>{tab.label}</button>
-                            ))}
-                        </nav>
-                        <section className="mb-10 min-h-[400px]">
-                            {activeTab === 'strategy' && renderStrategy()}
-                            {activeTab === 'gaps' && renderGaps()}
-                            {activeTab === 'expertise' && renderExpertise()}
-                            {activeTab === 'cost' && renderCostManagement()}
-                            {activeTab === 'financials' && renderFinancials()}
-                        </section>
-                        <div className="mt-12 p-8 bg-slate-800/50 rounded-2xl border border-slate-700">
-                            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2"><ChevronRight className="text-blue-500" /> Strategic Verdict</h3>
-                            <p className="text-slate-300 text-sm leading-relaxed"><strong>Rework (ConStraight):</strong> Best for AI autonomy and engineering presence. <strong>Manage (Devoteam):</strong> Best for cost-efficiency and specialized GCP hubs.</p>
-                        </div>
-                    </main>
-                </div>
-            );
-        };
+                        <div class="text-3xl font-bold text-white mb-1">$42,000</div>
+                        <div class="text-sm text-slate-400 mb-4">2-Year Committed Ramp (up to 65 targets)</div>
+                        <p class="text-sm text-slate-400 italic">"Requires upfront commitment before the tool's integration is proven in our specific environment."</p>
+                    </div>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+                    <!-- Our Recommendation -->
+                    <div class="border-2 border-emerald-500 bg-emerald-900/20 p-5 rounded-lg relative overflow-hidden">
+                        <div class="absolute -right-6 -top-6 bg-emerald-500 text-white text-xs font-bold px-8 py-1 transform rotate-45">
+                            RECOMMENDED
+                        </div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-lg font-semibold text-emerald-400">Our Strategic Recommendation</h4>
+                            <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded">Option 1</span>
+                        </div>
+                        <div class="text-3xl font-bold text-white mb-1">$10,000</div>
+                        <div class="text-sm text-emerald-200/70 mb-4">Initial 20 Targets (Phase 1)</div>
+                        
+                        <ul class="text-sm text-emerald-100 space-y-2">
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-emerald-400"></i> Validates GitHub integration safely</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-emerald-400"></i> Proves the €130k ROI on Postgres first</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-emerald-400"></i> Retains leverage for Phase 2 Oracle expansion</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <p class="text-lg font-medium text-white bg-white/10 py-3 px-6 rounded-lg inline-block">
+                        <span class="text-blue-400 font-bold">Action Requested:</span> Approve $10,000 for Phase 1 and assign 1 Integration Engineer.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
     </script>
 </body>
 </html>
